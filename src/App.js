@@ -1,10 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+
 import './App.css';
 import { Grid, TextField, FormControlLabel, Checkbox, Container, Button} from '@material-ui/core';
-function App() {
-  return (
+import SignIn from './signIn';
+import Routes from './Routes';
+import history from './history';
+import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
+
+
+
+class App extends Component {
+  render (){
+    return(
     <React.Fragment>
+      <div>im really bad at this stuff</div>
       <Container maxWidth="sm">
         <h1>Sign-Up</h1>
         <Grid container spacing={3}>
@@ -83,14 +93,22 @@ function App() {
                 <Grid item xs={12}>
                   <FormControlLabel
                     control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-                    label="Use this address for payment details"
+                    label="Agree to Terms & Conditions"
                   />
                 </Grid>
-                <Button variant="contained" color="primary" href="signIn.js">Submit</Button>
+                <Routes>
+                <Link to="/signIn"><Button variant="contained" color="primary">Submit</Button></Link>
+                </Routes>
               </Grid>
             </Container>
           </React.Fragment>
-  );
+    )
+  }
+}
+
+
+export function redir() {
+  return <Redirect to="signIn"/>
 }
 
 export default App;
