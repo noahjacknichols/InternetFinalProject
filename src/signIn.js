@@ -7,16 +7,9 @@ import history from './history';
 import { Redirect, withRouter, Route, Switch, Router } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-const mysql = require('mysql');
-// import Server from './server';
-// test();
 
 
-
-
-
-
-class App extends Component {
+class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = { apiResponse: ""};
@@ -38,6 +31,22 @@ class App extends Component {
       <Container maxWidth="sm">
         <h1>Sign-Up</h1>
         <Grid container spacing={3}>
+                <Grid item xs={12}>
+                  <TextField 
+                    required id="userName"
+                    name="userName"
+                    label="Username"
+                    fullWidth
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField 
+                    fullWidth
+                    required id="password"
+                    name="password"
+                    label="Password"
+                    />
+                </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField
                     required
@@ -117,7 +126,7 @@ class App extends Component {
                   />
                 </Grid>
                 {/* <Link to='/signIn'> */}
-                <Button variant="contained" color="primary">Submit</Button>
+                <Button variant="contained" color="primary" href="/Login">Submit</Button>
                 {/* </Link> */}
               </Grid>
             </Container>
@@ -141,5 +150,9 @@ class App extends Component {
 // }
 
 
-export default App;
+export function checkData(){
+  
+}
+
+export default SignIn;
 

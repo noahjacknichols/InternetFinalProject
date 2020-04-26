@@ -4,17 +4,20 @@ import './index.css';
 import SignIn from './SignIn';
 import Routes from './Routes';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter } from 'react-router-dom';
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import Login from "./Login"
 
-
+const routing = (
+  <Router>
+    <div>
+      <Route exact path="/" component={SignIn}/>
+      <Route path="/Login" component={Login}/>
+    </div> 
+  </Router>
+)
 
 ReactDOM.render(
-  
-  <React.StrictMode>
-    
-    <SignIn />
-
-  </React.StrictMode>,
+    routing,
   document.getElementById('root')
 );
 

@@ -3,23 +3,24 @@ var router = express.Router();
 
 const con = require("./conn");
 
-var x;
-  
+
+function queryData(){
   con.connect(function(err) {
     if (err) throw err;
     con.query("SELECT * FROM users", function (err, result, fields) {
       if (err) throw err;
       console.log(result);
-      x = result;
+      return result;
     });
   })
+}
 
   
 
 
 
 router.get("/", function(req,res,next){
-    res.send(x);
+    res.send(queryData());
 });
 
 module.exports = router;
