@@ -1,6 +1,6 @@
 
 import React, { Component, lazy } from "react";
-import { Router, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route, BrowserRouter } from "react-router-dom";
 
 // import App from "./App";
 // import signIn from "./signIn";
@@ -11,12 +11,14 @@ export default class Routes extends Component {
     
     render () {
         return(
-            <Router>
-                <Switch>
-                <Route path="/" exact component = {App} />
-                <Route path="/signIn" component = {signIn}/>
-                </Switch>
-            </Router>
+            <BrowserRouter>
+                <Router>
+                    <Switch>
+                    <Route path="/" exact component = {App} />
+                    <Route path="/signIn" component = {signIn}/>
+                    </Switch>
+                </Router>
+            </BrowserRouter>
         )
     
     }   

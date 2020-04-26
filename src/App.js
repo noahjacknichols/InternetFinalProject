@@ -2,19 +2,40 @@ import React, { Component } from 'react';
 
 import './App.css';
 import { Grid, TextField, FormControlLabel, Checkbox, Container, Button} from '@material-ui/core';
-import SignIn from './signIn';
+import signIn from './signIn';
 import Routes from './Routes';
 import history from './history';
-import { Redirect } from 'react-router';
+import { Redirect, withRouter, Route, Switch, Router } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+const mysql = require('mysql');
+// import Server from './server';
+// test();
+
+
+
 
 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { apiResponse: ""};
+  }
+  callAPI(){
+    fetch("http://localhost:9000/testAPI")
+      .then(res => res.text())
+      .then(res => this.setState({ apiResponse: res}))
+  }
+  componentWillMount(){
+    this.callAPI();
+  }
+  
   render (){
     return(
     <React.Fragment>
       <div>im really bad at this stuff</div>
+      <p classname="test-p">{this.state.apiResponse}</p>
       <Container maxWidth="sm">
         <h1>Sign-Up</h1>
         <Grid container spacing={3}>
@@ -96,19 +117,30 @@ class App extends Component {
                     label="Agree to Terms & Conditions"
                   />
                 </Grid>
-                <Routes>
-                <Link to="/signIn"><Button variant="contained" color="primary">Submit</Button></Link>
-                </Routes>
+                {/* <Link to='/signIn'> */}
+                <Button variant="contained" color="primary">Submit</Button>
+                {/* </Link> */}
               </Grid>
             </Container>
+            {/* <BrowserRouter>
+                <Router>
+                    <Switch>
+                    <Route path="/" exact component = {App} />
+                    <Route path="/signIn" component = {signIn}/>
+                    </Switch>
+                </Router>
+            </BrowserRouter> */}
           </React.Fragment>
+          
     )
   }
 }
 
 
-export function redir() {
-  return <Redirect to="signIn"/>
-}
+// export function redir() {
+//   return <Redirect to="/signIn"/>
+// }
+
 
 export default App;
+
