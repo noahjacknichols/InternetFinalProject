@@ -1,12 +1,7 @@
 var express = require("express");
 var router = express.Router();
-const mysql = require('mysql');
-const con = mysql.createConnection({
-    host: 'database-2.ckb7qqal4m5l.us-east-2.rds.amazonaws.com',
-    user: 'root',
-    password: 'password',
-    database: 'STUPID_SHIT'
-  });
+
+const con = require("./conn");
 
 var x;
   
