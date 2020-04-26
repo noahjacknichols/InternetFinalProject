@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import './App.css';
 import { Grid, TextField, FormControlLabel, Checkbox, Container, Button} from '@material-ui/core';
-import signIn from './signIn';
 import Routes from './Routes';
 import history from './history';
 import { Redirect, withRouter, Route, Switch, Router } from 'react-router';
