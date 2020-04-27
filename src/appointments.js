@@ -35,8 +35,6 @@ export default class AppointmentTable extends Component {
     })
   }
 
-  handleClick = () => this.props.history.push('/appointments.js')
-
   render() {
     const { column, data, direction } = this.state
     return (
