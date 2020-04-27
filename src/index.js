@@ -6,7 +6,9 @@ import 'semantic-ui-css/semantic.min.css'
 import * as serviceWorker from './serviceWorker';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import Login from "./Login"
-import HomePage from "./HomepageLayout"
+import HomePage from "./HomepageLayout";
+import Appointments from "./appointments";
+import BookAppointments from "./bookappointment";
 
 const routing = (
   <Router>
@@ -14,6 +16,8 @@ const routing = (
       <Route exact path="/" component={HomePage}/>
       <Route path="/Login" component={Login}/>
       <Route path="/SignIn" component={SignIn}/>
+      <Route path="/Appointments" component={Appointments}/>
+      <Route path="/BookAppointment" component={BookAppointments}/>
     </div> 
   </Router>
 )

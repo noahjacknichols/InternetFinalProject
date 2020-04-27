@@ -8,21 +8,21 @@ const handleQuery = async (username, pass) => {
         var toQuery = "SELECT * FROM users WHERE username = '" + username + "' AND password = '"+pass + "'";
         console.log(toQuery);
         var respondo = ''
-         con.query(toQuery, function (err, result, fields) {
+         con.query(toQuery, (err, result) => {
             if(err){ return reject(err)};
-            resolve(results);
+            resolve(result);
             // console.log("this is the result from query: ");
             // console.log(result[0].id);
     
     
-            return result[0].id;
+            
         });
         // return respondo;
     })
 
 }
 
-router.get("/", async function(req,res,next){
+router.get("/", async (req,res) => {
     
 
     console.log("query is:")
@@ -34,7 +34,7 @@ router.get("/", async function(req,res,next){
     let toSend = await handleQuery(user, pass);
     console.log("BIG RESPONSE:")
     console.log(toSend);
-    res.send(toSend);
+    res.json(toSend);
     // con.end((err) => {
     //     console.log("closing request");
     // });

@@ -63,8 +63,8 @@ export default function App() {
                 margin="normal"
                 id="date-picker-inline"
                 label="Date"
-                value={selected.date}
-                onChange={handleChange}
+                
+                // onChange={handleChange}
                 KeyboardButtonProps={{
                   'aria-label': 'change date',
                 }}
@@ -90,7 +90,7 @@ export default function App() {
             />
           </Grid>
           <Container>
-            <Button fullWidth='true' variant="contained" color="primary" href="#contained-buttons">Submit</Button>
+            <Button fullWidth='true' variant="contained" color="primary" href="/Appointments">Submit</Button>
           </Container>
         </Grid>
       </Container>

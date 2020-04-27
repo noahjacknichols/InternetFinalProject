@@ -20,8 +20,9 @@ class Login extends Component {
     constructor(props){
         super(props);
         this.validateLogin = this.validateLogin.bind(this);
+        // this.callAPI = this.callAPI.bind(this);
     }
-    validateLogin(){
+    async validateLogin(){
         console.log("validating login..")
         console.log(this.state.email)
         if(this.state.email === ''){
@@ -34,19 +35,35 @@ class Login extends Component {
         else{
             //query for the user in db
             console.log('verifying user..')
-            this.callAPI();
+            await this.callAPI();
+            console.log("apiResponse:")
             console.log(this.state.apiResponse)
             if(this.state.apiResponse != ''){
-                this.props.history.push('/Login')
+                this.props.history.push('/SignIn')
             }
             
         }
     
     }
-    callAPI(){
-        fetch("http://localhost:9000/isUser?user="+this.state.email+"&pass="+this.state.password)
-          .then(res => res.text())
-          .then(res => this.setState({ apiResponse: res}))
+    async callAPI(){
+        await fetch("http://localhost:9000/isUser?user="+this.state.email+"&pass="+this.state.password, {
+        method: 'GET',
+            dataType: 'json',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(response => {
+            console.log(response[0].username)
+            this.setState({apiResponse: response[0].username});
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+        
+        
       }
 
     render(){

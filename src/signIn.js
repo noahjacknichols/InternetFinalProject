@@ -11,22 +11,36 @@ import { Link } from 'react-router-dom';
 class SignIn extends Component {
   constructor(props) {
     super(props);
+    // this.callAPI = this.callAPI.bind(this);
     this.state = { apiResponse: ""};
+
   }
-  callAPI(){
-    fetch("http://localhost:9000/getUsers")
-      .then(res => res.text())
-      .then(res => this.setState({ apiResponse: res}))
-  }
+  // callAPI(){
+  //   console.log("fetching..")
+  //   fetch("http://localhost:9000/getUsers")
+  //         .then(function(response){
+  //             console.log(response);
+  //             return response.json();
+
+  //         })
+  //       //   .then(res=> console.log("res is:" + res))
+  //         .then(function(jsonData) {
+  //             return JSON.stringify(jsonData);
+  //         })
+  //         .then(function(jsonStr){
+  //           this.setState({ apiResponse: jsonStr})
+  //           console.log("response:" + jsonStr);
+  //         })
+  // }
   componentWillMount(){
-    this.callAPI();
+    // this.callAPI();
   }
   
   render (){
     return(
     <React.Fragment>
-      <div>im really bad at this stuff</div>
-      <p classname="test-p">{this.state.apiResponse}</p>
+      
+      <p className="test-p">{this.state.apiResponse}</p>
       <Container maxWidth="sm">
         <h1>Sign-Up</h1>
         <Grid container spacing={3}>

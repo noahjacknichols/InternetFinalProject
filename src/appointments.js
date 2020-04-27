@@ -74,8 +74,8 @@ export default class AppointmentTable extends Component {
         </Container>
         <Divider horizontal></Divider>
         <Container>
-          <Button fluid color='blue'>
-            New Appointment
+          <Button fluid color='blue' href="/BookAppointment">
+            Book Appointment
           </Button>
         </Container>
       </>
