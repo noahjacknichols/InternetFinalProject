@@ -3,36 +3,38 @@ var router = express.Router();
 const con = require("./conn");
 
 
-function queryData(username, pass){
+const handleQuery = async (username, pass) => {
+    return new Promise((resolve, reject) => {
+        var toQuery = "SELECT * FROM users WHERE username = '" + username + "' AND password = '"+pass + "'";
+        console.log(toQuery);
+        var respondo = ''
+         con.query(toQuery, function (err, result, fields) {
+            if(err){ return reject(err)};
+            resolve(results);
+            // console.log("this is the result from query: ");
+            // console.log(result[0].id);
     
-    var toQuery = "SELECT * FROM users WHERE username = '" +username + "' AND password = '"+pass + "'";
-    console.log(toQuery);
-    con.query(toQuery, function (err, result, fields) {
-        if(err) throw err;
-        console.log(result);
-        var count = 0;
-        Object.keys(result).forEach(function(key){
-            count +=1;
+    
+            return result[0].id;
         });
-        console.log(count);
-        if(count > 0){
-            return 'true';
-        }else{
-            return 'false';
-        }
-        // return result;
-    });
+        // return respondo;
+    })
+
 }
 
-router.get("/", function(req,res,next){
+router.get("/", async function(req,res,next){
     
 
     console.log("query is:")
     console.log(req.query)
+    
     // return queryInfo;
     var user = req.query.user;
     var pass = req.query.pass;
-    res.send(queryData(user, pass));
+    let toSend = await handleQuery(user, pass);
+    console.log("BIG RESPONSE:")
+    console.log(toSend);
+    res.send(toSend);
     // con.end((err) => {
     //     console.log("closing request");
     // });
