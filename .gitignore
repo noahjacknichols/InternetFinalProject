@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 /api/routes/conn.js
+/package-lock.json
 
 # testing
 /coverage
