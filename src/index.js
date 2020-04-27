@@ -2,16 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import SignIn from './SignIn';
-import Routes from './Routes';
+import 'semantic-ui-css/semantic.min.css'
 import * as serviceWorker from './serviceWorker';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import Login from "./Login"
+import HomePage from "./HomepageLayout"
 
 const routing = (
   <Router>
     <div>
-      <Route exact path="/" component={SignIn}/>
+      <Route exact path="/" component={HomePage}/>
       <Route path="/Login" component={Login}/>
+      <Route path="/SignIn" component={SignIn}/>
     </div> 
   </Router>
 )

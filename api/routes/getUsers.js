@@ -5,14 +5,13 @@ const con = require("./conn");
 
 
 function queryData(){
-  con.connect(function(err) {
-    if (err) throw err;
+
     con.query("SELECT * FROM users", function (err, result, fields) {
       if (err) throw err;
       console.log(result);
       return result;
     });
-  })
+
 }
 
   
@@ -21,6 +20,7 @@ function queryData(){
 
 router.get("/", function(req,res,next){
     res.send(queryData());
+    
 });
 
 module.exports = router;
