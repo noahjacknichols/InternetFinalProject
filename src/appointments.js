@@ -39,25 +39,6 @@ export default class AppointmentTable extends Component {
     this.callInsert();
   }
 
-  handleSort = (clickedColumn) => () => {
-    const { column, data, direction } = this.state
-
-    if (column !== clickedColumn) {
-      this.setState({
-        column: clickedColumn,
-        data: _.sortBy(data, [clickedColumn]),
-        direction: 'ascending',
-      })
-
-      return
-    }
-
-    this.setState({
-      data: data.reverse(),
-      direction: direction === 'ascending' ? 'descending' : 'ascending',
-    })
-  }
-
   async callRemove() {
     var user = this.state.row.user_id
     var fname = this.state.row.first_name
@@ -118,9 +99,9 @@ export default class AppointmentTable extends Component {
           <Table sortable celled fixed>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell sorted = { column === 'name' ? direction : null } onClick = {this.handleSort('name')}>Name</Table.HeaderCell>
-                <Table.HeaderCell sorted = { column === 'last' ? direction : null } onClick = {this.handleSort('last')}>Surname</Table.HeaderCell>
-                <Table.HeaderCell sorted = { column === 'date' ? direction : null } onClick = {this.handleSort('date')}>Apt. Date</Table.HeaderCell>
+                <Table.HeaderCell>Name</Table.HeaderCell>
+                <Table.HeaderCell>Surname</Table.HeaderCell>
+                <Table.HeaderCell>Apt. Date</Table.HeaderCell>
                 <Table.HeaderCell>Apt. Time</Table.HeaderCell>
                 <Table.HeaderCell>Apt. Type</Table.HeaderCell>
                 <Table.HeaderCell>Location</Table.HeaderCell>
