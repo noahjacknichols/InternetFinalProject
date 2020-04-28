@@ -63,7 +63,9 @@ class Login extends Component {
         .then(response => response.json())
         .then(response => {
             console.log(response[0].id)
-            this.setState({apiResponse: response[0].id});
+            if(response !== []){
+                this.setState({apiResponse: response[0].id});
+            }
         })
         .catch(function(error){
             console.log(error);
