@@ -14,6 +14,7 @@ export default class AppointmentTable extends Component {
     super(props);
     this.passUser = this.passUser.bind(this);
     this.Remove = this.Remove.bind(this);
+    this.Logout = this.Logout.bind(this);
   }
 
   Remove = async (e, i) => {
@@ -21,6 +22,10 @@ export default class AppointmentTable extends Component {
     console.log(data[i])
     await this.setState({row: data[i]});
     this.callRemove();
+  }
+
+  async Logout () {
+    this.props.history.push('/')
   }
 
   async passUser() {
@@ -124,10 +129,12 @@ export default class AppointmentTable extends Component {
             </Table.Body>
           </Table>
         </Container>
-        <Divider horizontal></Divider>
         <Container>
-          <Button fluid color='blue' onClick={this.passUser}>
+          <Button fluid color='blue' onClick={this.passUser} style={{ marginTop: "1em"}}>
             Book Appointment
+          </Button>
+          <Button fluid color='red' onClick={this.Logout} style={{ marginTop: "1em"}}>
+            Logout
           </Button>
         </Container>
       </Segment>
