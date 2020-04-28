@@ -4,32 +4,77 @@ import './App.css';
 import { Grid, TextField, FormControlLabel, Checkbox, Container, Button} from '@material-ui/core';
 
 class SignIn extends Component {
-  constructor(props) {
+  state = {
+    email: '',
+    password: '',
+    apiResponse: '',
+}
+
+handleEmailChange = (e) => this.setState({
+    email: e.target.value
+})
+
+handlePassChange = (e) => this.setState({
+    password: e.target.value
+})
+
+constructor(props){
     super(props);
+    this.validateSignup = this.validateSignup.bind(this);
     // this.callAPI = this.callAPI.bind(this);
-    this.state = { apiResponse: ""};
+}
+async validateSignup(){
+    console.log("validating login..")
+    console.log(this.state.email)
+    if(this.state.email === ''){
+        console.log("error on email")
+    }else if(this.state.password === ''){
+        //print out issue
+        console.log("error on pass")
+        // return <div>something went wrong...</div>
+    }
+    else{
+        //query for the user in db
+        console.log('verifying user..')
+        await this.callAPI();
+        console.log("apiResponse:")
+        console.log(this.state.apiResponse)
+        if(this.state.apiResponse !== ''){
+            console.log()
+            this.props.history.push({
+                pathname: '/Appointments',
+                state: {
+                    id: this.state.apiResponse
+                }
+            })
+        }
+        
+    }
 
+}
+async callAPI(){
+    await fetch("http://localhost:9000/setUser?user="+this.state.email+"&pass="+this.state.password, {
+    method: 'GET',
+        dataType: 'json',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(response => {
+        console.log(response[0].id)
+        if(response !== []){
+            this.setState({apiResponse: response[0].id});
+        }
+    })
+    .catch(function(error){
+        console.log(error);
+    })
+    
+    
   }
-  // callAPI(){
-  //   console.log("fetching..")
-  //   fetch("http://localhost:9000/getUsers")
-  //         .then(function(response){
-  //             console.log(response);
-  //             return response.json();
 
-  //         })
-  //       //   .then(res=> console.log("res is:" + res))
-  //         .then(function(jsonData) {
-  //             return JSON.stringify(jsonData);
-  //         })
-  //         .then(function(jsonStr){
-  //           this.setState({ apiResponse: jsonStr})
-  //           console.log("response:" + jsonStr);
-  //         })
-  // }
-  componentWillMount(){
-    // this.callAPI();
-  }
   
   render (){
     return(
@@ -41,6 +86,8 @@ class SignIn extends Component {
         <Grid container spacing={3}>
                 <Grid item xs={12}>
                   <TextField 
+                    value={this.state.email}
+                    onChange={this.handleEmailChange}
                     required id="userName"
                     name="userName"
                     label="Username"
@@ -50,6 +97,8 @@ class SignIn extends Component {
                 <Grid item xs={12}>
                   <TextField 
                     fullWidth
+                    value={this.state.password}
+                    onChange={this.handlePassChange}
                     required id="password"
                     name="password"
                     label="Password"
@@ -134,18 +183,10 @@ class SignIn extends Component {
                   />
                 </Grid>
                 {/* <Link to='/signIn'> */}
-                <Button variant="contained" color="primary" href="/Login">Submit</Button>
+                <Button variant="contained" color="primary" onClick={this.validateSignup}>Submit</Button>
                 {/* </Link> */}
               </Grid>
             </Container>
-            {/* <BrowserRouter>
-                <Router>
-                    <Switch>
-                    <Route path="/" exact component = {App} />
-                    <Route path="/signIn" component = {signIn}/>
-                    </Switch>
-                </Router>
-            </BrowserRouter> */}
           </React.Fragment>
           
     )
@@ -153,14 +194,6 @@ class SignIn extends Component {
 }
 
 
-// export function redir() {
-//   return <Redirect to="/signIn"/>
-// }
-
-
-export function checkData(){
-  
-}
 
 export default SignIn;
 

@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import SignIn from './SignIn';
+import SignIn from './signIn';
 import 'semantic-ui-css/semantic.min.css'
 import * as serviceWorker from './serviceWorker';
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 import Login from "./Login"
 import HomePage from "./HomepageLayout";
-import Appointments from "./Appointments";
-import BookAppointments from "./Bookappointment";
+import Appointments from "./appointments";
+import BookAppointments from "./bookappointment";
 
 const routing = (
   <Router>
