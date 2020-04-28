@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Grid, TextField, FormControlLabel, Checkbox, Container, Button, Box} from '@material-ui/core';
+import { Grid, TextField, Container, Button } from '@material-ui/core';
 
 class Login extends Component {
     state = {
@@ -38,8 +38,14 @@ class Login extends Component {
             await this.callAPI();
             console.log("apiResponse:")
             console.log(this.state.apiResponse)
-            if(this.state.apiResponse != ''){
-                this.props.history.push('/SignIn')
+            if(this.state.apiResponse !== ''){
+                console.log()
+                this.props.history.push({
+                    pathname: '/Appointments',
+                    state: {
+                        id: this.state.apiResponse
+                    }
+                })
             }
             
         }
@@ -56,8 +62,8 @@ class Login extends Component {
         })
         .then(response => response.json())
         .then(response => {
-            console.log(response[0].username)
-            this.setState({apiResponse: response[0].username});
+            console.log(response[0].id)
+            this.setState({apiResponse: response[0].id});
         })
         .catch(function(error){
             console.log(error);
