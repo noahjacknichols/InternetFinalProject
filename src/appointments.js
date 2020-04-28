@@ -47,7 +47,7 @@ export default class AppointmentTable extends Component {
     var type = this.state.row.apt_type
     var time = this.state.row.apt_time
     var date = this.state.row.apt_date
-    await fetch("http://localhost:9000/removeApt?user_id="+user+"&fname="+fname+"&lname="+lname+"&loc="+loc+"&type="+type+"&time="+time+"&date="+date,{
+    await fetch("http://3.135.225.224:9000/removeApt?user_id="+user+"&fname="+fname+"&lname="+lname+"&loc="+loc+"&type="+type+"&time="+time+"&date="+date,{
     method: 'GET',
         dataType: 'json',
         headers: {
@@ -66,7 +66,7 @@ export default class AppointmentTable extends Component {
   }
 
   async callInsert() {
-    await fetch("http://localhost:9000/getApts?user_id="+this.state.user, {
+    await fetch("http://3.135.225.224:9000/getApts?user_id="+this.state.user, {
     method: 'GET',
         dataType: 'json',
         headers: {
