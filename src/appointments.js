@@ -1,13 +1,11 @@
 import _ from 'lodash'
 import React, { Component } from 'react';
-import { Table, Header, Divider, Button, Container } from 'semantic-ui-react'
+import { Table, Header, Divider, Button, Container, Segment } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 
 export default class AppointmentTable extends Component {
   state = {
-    column: null,
     data: [],
-    direction: null,
     user: this.props.location.state.id,
     row: {}
   }
@@ -86,17 +84,17 @@ export default class AppointmentTable extends Component {
   }
 
   render() {
-    const { column, data, direction } = this.state
+    const { data } = this.state
 
     return (
-      <>
+      <Segment inverted textAlign='center' style={{ minHeight: 860, padding: '1em 0em' }} vertical>
         <Divider horizontal></Divider>
         <Container textAlign='left'>
-          <Header as='h1'>Appointments</Header>
+          <Header as='h1' inverted>Appointments</Header>
         </Container>
         <Divider horizontal></Divider>
         <Container>
-          <Table sortable celled fixed>
+          <Table celled fixed striped>
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>Name</Table.HeaderCell>
@@ -128,13 +126,11 @@ export default class AppointmentTable extends Component {
         </Container>
         <Divider horizontal></Divider>
         <Container>
-          <Button 
-            fluid color='blue' 
-            onClick={this.passUser}>
+          <Button fluid color='blue' onClick={this.passUser}>
             Book Appointment
           </Button>
         </Container>
-      </>
+      </Segment>
     );
   }
 }
