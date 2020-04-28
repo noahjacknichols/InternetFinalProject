@@ -8,7 +8,13 @@ var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 var getUsersRouter = require("./routes/getUsers");
 var isUserRouter = require("./routes/isUser");
+<<<<<<< HEAD
 var setUserRouter = require("./routes/setUser");
+=======
+var getAptRouter = require("./routes/getApts");
+var insertApt = require("./routes/insertApt");
+var removeApt = require("./routes/removeApt");
+>>>>>>> 3eb92b8a88ac76bfde4b3ec7f9b40f13e22c0454
 var app = express();
 // var con = require("./conn")
 
@@ -22,13 +28,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 // ADD ROUTES HERE
 app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 app.use('/getUsers', getUsersRouter);
 app.use('/isUser', isUserRouter);
 app.use('/setUser', setUserRouter);
+app.use('/getApts', getAptRouter);
+app.use('/insertApt', insertApt);
+app.use('/removeApt', removeApt);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
