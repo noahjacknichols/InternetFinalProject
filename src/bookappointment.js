@@ -62,7 +62,7 @@ class BookAppointments extends Component {
     var m = this.state.date.getMonth() + 1;
     var y = this.state.date.getFullYear();
     var newDate = y + "-" + m + "-" + d;
-    await fetch("http://localhost:9000/insertApt?user_id="+this.state.user+"&fname="+this.state.fname+"&lname="+this.state.lname+"&loc="+this.state.l+"&type="+this.state.t+"&time="+this.state.time+"&date="+newDate,{
+    await fetch("http://3.135.225.224:9000/insertApt?user_id="+this.state.user+"&fname="+this.state.fname+"&lname="+this.state.lname+"&loc="+this.state.l+"&type="+this.state.t+"&time="+this.state.time+"&date="+newDate,{
     method: 'GET',
         dataType: 'json',
         headers: {

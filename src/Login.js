@@ -61,7 +61,7 @@ class Login extends Component {
     
     }
     async callAPI(){
-        await fetch("http://localhost:9000/isUser?user="+this.state.email+"&pass="+this.state.password, {
+        await fetch("http://3.135.225.224:9000/isUser?user="+this.state.email+"&pass="+this.state.password, {
         method: 'GET',
             dataType: 'json',
             headers: {
