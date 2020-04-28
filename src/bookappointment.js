@@ -29,6 +29,16 @@ class BookAppointments extends Component {
   constructor(props) {
     super(props);
     this.bookApt = this.bookApt.bind(this);
+    this.Back = this.Back.bind(this);
+  }
+
+  async Back () {
+    this.props.history.push({
+      pathname: '/Appointments',
+      state: {
+          id: this.state.user
+      }
+    })
   }
 
   async bookApt() {
@@ -180,9 +190,10 @@ class BookAppointments extends Component {
                     }}
                   />
                 </Grid>
-                <Container>
-                  <Button fullWidth variant="contained" color="primary" onClick={this.bookApt}>Submit</Button>
-                </Container>
+                <Grid item xs={12}>
+                  <Button variant="contained" color="primary" onClick={this.Back} style={{ width: "10em" }}>Back</Button>
+                  <Button variant="contained" color="primary" onClick={this.bookApt} style={{ marginLeft: '2em', width: "10em"}}>Submit</Button>
+                </Grid>
               </Grid>
             </Container>
           </Paper>
