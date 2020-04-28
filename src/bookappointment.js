@@ -25,23 +25,19 @@ export default class BookAppointments extends Component {
 
   async bookApt() {
     if (this.state.fname === '') {
-      console.log("No first name")
+      alert("First Name field not Filled.")
 
     } else if (this.state.lname === '') {
-      console.log("No last name")
+      alert("Last Name field not Filled.")
 
     } else if (this.state.l === '') {
-      console.log("No location")
+      alert("Location not selected.")
 
     } else if (this.state.t === '') {
-      console.log("No type")
-
-    } else if (this.state.date === '') {
-      console.log("No date")
+      alert("Appointment Type not selected.")
 
     } else {
       console.log("Booking Appointment...")
-
       await this.callAPI()
     }
   }
