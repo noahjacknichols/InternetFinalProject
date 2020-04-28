@@ -7,18 +7,16 @@ import {
   Header,
   Icon,
   Image,
-  List,
   Menu,
   Responsive,
   Segment,
-  Sidebar,
   Visibility,
 } from 'semantic-ui-react'
 
 const getWidth = () => {
-  const isSSR = typeof window === 'undefined'
-  return isSSR ? Responsive.onlyTablet.minWidth : window.innerWidth
+  return window.innerWidth
 }
+
 const HomepageHeading = () => (
   <Container text>
     <Header
@@ -84,10 +82,10 @@ class DesktopContainer extends Component {
             >
               <Container>
                 <Menu.Item position='right'>
-                  <Button as='a' inverted={!fixed} href="/Login">
+                  <Button as='a' inverted={!fixed} href="/Login" style={{ width: "7em"}}>
                     Log in
                   </Button>
-                  <Button as='a' href="/SignIn" inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
+                  <Button as='a' href="/SignIn" inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em',  width: "7em" }}>
                     Sign Up
                   </Button>
                 </Menu.Item>
