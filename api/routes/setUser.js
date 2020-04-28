@@ -45,7 +45,9 @@ router.get("/", async (req,res) => {
     let toSend = await handleQuery(user, pass);
     console.log("toSend is:" + toSend)
     if(toSend == ''){
-        let toSend = await handleInsertion(user, pass);
+        toSend = await handleInsertion(user, pass);
+        toSend = await handleQuery(user, pass);
+        console.log(toSend);
     }
     console.log("RESPONSE:")
     console.log(toSend);
